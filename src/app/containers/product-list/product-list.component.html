@@ -1,0 +1,35 @@
+<div class="row" *ngIf="currencyObs$ | async as currencyCode">
+    <div *ngFor="let item of pList | slice: startCount:endCount" [appColumn] = "3">
+        <app-product 
+            [code]="currencyCode" 
+            [data]="item" 
+            (btnClick)="addToCart($event)"
+        ></app-product>
+    </div>
+</div>
+<div class="d-flex align-items-center justify-content-center my-4">
+    <button
+      [routerLink]="[]"
+      [queryParams]="{ page: currentPage - 1 }"
+      class="btn btn-sm btn-primary me-2"
+    >
+      Previous
+    </button>
+    <button
+      [queryParams]="{ page: currentPage + 1 }"
+      [routerLink]="[]"
+      class="btn btn-sm btn-primary me-2"
+    >
+      Next
+    </button>
+  </div>
+  
+<!-- <app-product 
+[data] = "pList" 
+(btnClick)="addToCart($event)" 
+></app-product>
+<app-product 
+[data] = "pList" 
+[wishlist]="true"
+(btnClick)="addToWishlist($event)" 
+></app-product> -->

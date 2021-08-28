@@ -1,0 +1,22 @@
+<div class="py-4 px-4 text-center border rounded my-2" appShadowEffect>
+    <img [src]="data.productImage" 
+    [appImgFallback]="defaultImg" 
+    class="img-thumbnail"
+    [routerLink]="['/detail', data.productId]"
+    [queryParams] = "{color: 'red'}"
+    />
+    
+    <h5 class="fs-6 fw-light my-2">{{ data.productName | uppercase }}</h5>
+    <h6>
+        {{ priceConversion() }}
+        {{  data.productPrice | conversion: code | currency: code }}
+    </h6>
+    <button 
+    class="btn btn-sm btn-primary w-100 text-uppercase"
+    appShadowEffect *ngIf="data.productStock; else  :nostock" (click)="notifyParent()">Add to {{ btnText }}</button>
+    <!-- id => #ref (template ref) -->
+    <ng-template #nostock>
+        <button disabled class="btn btn-sm">Out of stock</button>
+    </ng-template>
+</div>
+<!-- *ngSwitch- -->

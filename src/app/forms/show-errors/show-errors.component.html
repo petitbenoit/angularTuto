@@ -1,0 +1,6 @@
+<div *ngIf="shouldShowErrors" class="d-flex flex-column">
+    <small class="text-danger" 
+    *ngFor="let error of listOfErrors()">
+        {{ error }}
+    </small>
+</div>
